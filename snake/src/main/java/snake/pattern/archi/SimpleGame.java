@@ -1,5 +1,8 @@
 package snake.pattern.archi;
 
+/**
+ * Classe concrète implémentant un jeu
+ */
 public class SimpleGame extends Game
 {
 

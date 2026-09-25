@@ -3,9 +3,16 @@ package snake.pattern.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * 
+ * Classe permttant l'affichage d'une partie
+ */
 public class ViewSimpleGame 
 {
 
+    /**
+     * La fenêtre de cette interface
+     */
     JFrame frame = new JFrame();
 
     public ViewSimpleGame()

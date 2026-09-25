@@ -9,8 +9,20 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
+
+    <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    
+    
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.16</version> <!-- Utilisez la dernière version stable adaptée à votre version de Java -->
+        </dependency>
+    </dependencies>
+
 
 </project>
