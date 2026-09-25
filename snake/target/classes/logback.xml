@@ -1,0 +1,43 @@
+<configuration>
+  <appender name="info" class="ch.qos.logback.core.ConsoleAppender">
+  <filter class="ch.qos.logback.classic.filter.LevelFilter">
+    <level>ERROR</level>
+    <onMatch>DENY</onMatch>
+    <onMismatch>ACCEPT</onMismatch>
+  </filter>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%n%d{HH:mm:ss} [%thread] %highlight(%-5level) %highlight(%logger{36})  %n    ligne : %highlight(%L) %highlight(---) %msg %highlight(---) %n%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="error" class="ch.qos.logback.core.ConsoleAppender">
+  <filter class="ch.qos.logback.classic.filter.LevelFilter">
+    <level>ERROR</level>
+    <onMatch>ACCEPT</onMatch>
+    <onMismatch>DENY</onMismatch>
+  </filter>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%n%d{HH:mm:ss} [%thread] %highlight(%-5level) %boldRed(%logger{36}) %n    ligne : %boldRed(%L) - %boldRed(Erreur \(%msg\) :) %n %ex %n </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="DEFAULT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+    <logger name="snake.pattern" level="info" additivity="false">
+      <appender-ref ref="info" />
+      <appender-ref ref="error" />
+    </logger>
+
+
+  <root level="INFO">
+    <appender-ref ref="DEFAULT" />
+  </root>
+  
+</configuration>
