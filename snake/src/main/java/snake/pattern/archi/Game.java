@@ -1,14 +1,20 @@
 package snake.pattern.archi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import snake.pattern.utils.Observable;
+import snake.pattern.utils.Observateur;
 
 
 /**
  * Classe abstraite représentant une patron de méthode
  * Game
  */
-public abstract class Game implements Runnable
+public abstract class Game implements Runnable, Observable
 {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
     /**
@@ -35,6 +41,8 @@ public abstract class Game implements Runnable
      * Une instance de jeu
      */
     Thread thread;
+
+    protected List<Observateur> views = new ArrayList<>();
 
     public Game (int maxTurn, long time)
     {
@@ -125,6 +133,27 @@ public abstract class Game implements Runnable
             {
                 logger.error("Le programme ne s'est pas endormis", e);
             }
+        }
+    }
+
+    @Override
+    public void enregistrerObservateur(Observateur view) 
+    {
+        views.add(view);
+    }
+
+    @Override
+    public void supprimerObservateur(Observateur view) 
+    {
+        views.remove(view);
+    }
+
+    @Override
+    public void notifierObservateurs() 
+    {
+        for (Observateur view : views) 
+        {
+            view.actualiser(curentTurn);
         }
     }
 }
