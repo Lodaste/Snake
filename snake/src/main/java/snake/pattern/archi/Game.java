@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Classe abstraite représentant une Stratégie générale
+ * Classe abstraite représentant une patron de méthode
  * Game
  */
 public abstract class Game implements Runnable
