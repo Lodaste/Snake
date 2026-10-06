@@ -1,13 +1,16 @@
 package snake.pattern.view;
 
 import javax.swing.*;
+
+import snake.pattern.utils.Observateur;
+
 import java.awt.*;
 
 /**
  * 
  * Classe permttant l'affichage d'une partie
  */
-public class ViewSimpleGame 
+public class ViewSimpleGame implements Observateur
 {
 
     /**
@@ -15,7 +18,9 @@ public class ViewSimpleGame
      */
     JFrame frame = new JFrame();
 
-    public ViewSimpleGame()
+    JLabel jeu;
+
+    public ViewSimpleGame() 
     {
         frame.setSize(new Dimension(700, 700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,17 +32,20 @@ public class ViewSimpleGame
         frame.setLocation(dx, dy);
         
 
-        JLabel jeu = new JLabel("TEST JEU", JLabel.CENTER);
+        jeu = new JLabel("TEST JEU", JLabel.CENTER);
         frame.add(jeu);
 
         frame.setVisible(true); 
     }
-    
-
 
     public static void main(String[] args) 
     {
         ViewSimpleGame vuViewSimpleGame = new ViewSimpleGame();
+    }
+
+    @Override
+    public void actualiser(int curentTurn) {
+        jeu.setText("Tour actuel : " + curentTurn);
     }
 
 

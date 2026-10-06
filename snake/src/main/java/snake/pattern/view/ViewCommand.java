@@ -1,19 +1,27 @@
 package snake.pattern.view;
 
 import javax.swing.*;
+
+import snake.pattern.utils.Observateur;
+
 import java.awt.*;
 
 /**
  * Classe permttant l'affichage de comandes pour contrôler une partie
  */
-public class ViewCommand 
+public class ViewCommand implements Observateur
 {
     /**
      * La fenêtre de cette interface
      */
     JFrame frame = new JFrame();
 
-    public ViewCommand()
+    /**
+     * Nombre de tours courant
+     */
+    JLabel turns;
+
+    public ViewCommand() 
     {
         //Créer des propriétés pour la fenêtre
         frame.setSize(new Dimension(700, 250));
@@ -78,7 +86,7 @@ public class ViewCommand
         subTurnsPanel.add(turnsSlider);
 
         //Créer un label pour le tour courant
-        JLabel turns = new JLabel("Tour actuel : 5", JLabel.CENTER);
+        turns = new JLabel("Tour actuel : 5", JLabel.CENTER);
 
         //Ajouter les éléments au second conteneur
         turnsPanel.add(subTurnsPanel);
@@ -95,5 +103,14 @@ public class ViewCommand
     public static void main(String[] args) 
     {
         ViewCommand viewCommand = new ViewCommand();
+    }
+
+
+
+    @Override
+    public void actualiser(int curentTurn)
+    {
+        System.out.println(curentTurn);
+        turns.setText("Tour actuel : " + curentTurn);
     }
 }
