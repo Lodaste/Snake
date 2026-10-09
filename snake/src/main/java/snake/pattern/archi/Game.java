@@ -37,6 +37,14 @@ public abstract class Game implements Runnable, Observable
      */
     Long time;
 
+    public void setRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
     /**
      * Une instance de jeu
      */

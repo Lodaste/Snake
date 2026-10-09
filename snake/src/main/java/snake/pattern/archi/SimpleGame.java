@@ -1,7 +1,5 @@
 package snake.pattern.archi;
 
-import snake.pattern.utils.Observateur;
-
 /**
  * Classe concrète implémentant un patron de méthode, exemple textuel du déroulement du jeu
  */
