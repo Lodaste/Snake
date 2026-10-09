@@ -2,6 +2,8 @@ package snake.pattern.view;
 
 import javax.swing.*;
 
+import snake.pattern.archi.ControllerSimpleGame;
+import snake.pattern.utils.AbstractController;
 import snake.pattern.utils.Observateur;
 
 import java.awt.*;
@@ -21,8 +23,12 @@ public class ViewCommand implements Observateur
      */
     JLabel turns;
 
-    public ViewCommand() 
+    AbstractController controller;
+
+    public ViewCommand(AbstractController controller) 
     {
+        this.controller = controller;
+
         //Créer des propriétés pour la fenêtre
         frame.setSize(new Dimension(700, 250));
         frame.setResizable(false); 
@@ -102,7 +108,7 @@ public class ViewCommand implements Observateur
 
     public static void main(String[] args) 
     {
-        ViewCommand viewCommand = new ViewCommand();
+        ViewCommand viewCommand = new ViewCommand(new ControllerSimpleGame(10, Long.valueOf(2000)));
     }
 
 
