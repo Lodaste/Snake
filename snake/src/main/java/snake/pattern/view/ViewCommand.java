@@ -5,6 +5,7 @@ import javax.swing.*;
 import snake.pattern.archi.ControllerSimpleGame;
 import snake.pattern.utils.AbstractController;
 import snake.pattern.utils.Observateur;
+import snake.pattern.utils.ViewCommandState;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,16 @@ public class ViewCommand implements Observateur
     JLabel turns;
 
     AbstractController controller;
+
+    JButton restartButton;
+
+    JButton playButton;
+
+    JButton pauseButton;
+
+    JButton stepButton;
+
+    ViewCommandState viewCommandState;
 
     public ViewCommand(AbstractController controller) 
     {
@@ -59,16 +70,16 @@ public class ViewCommand implements Observateur
 
         //Créer des boutons et y mettre des icônes
         Icon restartIcon = new ImageIcon("snake/src/main/resources/icons/icon_restart.png");
-        JButton restartButton = new JButton(restartIcon);
+        restartButton = new JButton(restartIcon);
 
         Icon playIcon = new ImageIcon("snake/src/main/resources/icons/icon_play.png");
-        JButton playButton = new JButton(playIcon);
+        playButton = new JButton(playIcon);
 
         Icon pauseIcon = new ImageIcon("snake/src/main/resources/icons/icon_pause.png"); 
-        JButton pauseButton = new JButton(pauseIcon);
+        pauseButton = new JButton(pauseIcon);
 
         Icon stepIcon = new ImageIcon("snake/src/main/resources/icons/icon_step.png");
-        JButton stepButton = new JButton(stepIcon);
+        stepButton = new JButton(stepIcon);
 
 
         /**
@@ -76,25 +87,29 @@ public class ViewCommand implements Observateur
          */
         restartButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
-            controller.restart();
+                controller.restart();
+                viewCommandState.restart();
             }
         });
 
         playButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
-            controller.play();
+                controller.play();
+                viewCommandState.play();
             }
         });
 
         stepButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
-            controller.step();
+                controller.step();
+                viewCommandState.step();
             }
         });
 
         pauseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
-            controller.pause();
+                controller.pause();
+                viewCommandState.pause();
             }
         });
 
@@ -141,12 +156,40 @@ public class ViewCommand implements Observateur
         ViewCommand viewCommand = new ViewCommand(new ControllerSimpleGame(10, Long.valueOf(2000)));
     }
 
-
-
     @Override
     public void actualiser(int curentTurn)
     {
         System.out.println(curentTurn);
         turns.setText("Tour actuel : " + curentTurn);
     }
+
+     public JButton getRestartButton() {
+        return restartButton;
+    }
+
+
+
+    public JButton getPlayButton() {
+        return playButton;
+    }
+
+
+
+    public JButton getPauseButton() {
+        return pauseButton;
+    }
+
+
+
+    public JButton getStepButton() {
+        return stepButton;
+    }
+
+
+
+    public void setViewCommandState(ViewCommandState viewCommandState) {
+        this.viewCommandState = viewCommandState;
+    }
+
+    
 }
