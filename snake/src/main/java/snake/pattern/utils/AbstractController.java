@@ -8,25 +8,25 @@ public abstract class AbstractController
     /**
      * arrêt et réinitialisation
      */
-    protected abstract void restart();
+    public abstract void restart();
 
     /**
      * passage manuel d’une étape
      */
-    protected abstract void step();
+    public abstract void step();
 
     /**
      * passage automatique des étapes
      */
-    protected abstract void play();
+    public abstract void play();
 
     /**
      * interruption du passage automatique des étapes
      */
-    protected abstract void pause();
+    public abstract void pause();
 
     /**
      * réglage de la vitesse du jeu
      */
-    protected abstract void setSpeed(double speed);
+    public abstract void setSpeed(double speed);
 }

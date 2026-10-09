@@ -7,6 +7,8 @@ import snake.pattern.utils.AbstractController;
 import snake.pattern.utils.Observateur;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Classe permttant l'affichage de comandes pour contrôler une partie
@@ -67,6 +69,34 @@ public class ViewCommand implements Observateur
 
         Icon stepIcon = new ImageIcon("snake/src/main/resources/icons/icon_step.png");
         JButton stepButton = new JButton(stepIcon);
+
+
+        /**
+         * Ajout d'actions pour les boutons
+         */
+        restartButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evenement) {
+            controller.restart();
+            }
+        });
+
+        playButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evenement) {
+            controller.play();
+            }
+        });
+
+        stepButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evenement) {
+            controller.step();
+            }
+        });
+
+        pauseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evenement) {
+            controller.pause();
+            }
+        });
 
         //Ajouter les boutons au premier conteneur
         buttonsPanel.add(restartButton);
