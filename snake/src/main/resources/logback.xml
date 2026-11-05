@@ -1,10 +1,12 @@
 <configuration>
+
+  <!-- Vos appenders spécifiques (inchangés) -->
   <appender name="info" class="ch.qos.logback.core.ConsoleAppender">
-  <filter class="ch.qos.logback.classic.filter.LevelFilter">
-    <level>ERROR</level>
-    <onMatch>DENY</onMatch>
-    <onMismatch>ACCEPT</onMismatch>
-  </filter>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>INFO</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
     <encoder>
       <charset>UTF-8</charset>
       <pattern>%n%d{HH:mm:ss} [%thread] %highlight(%-5level) %highlight(%logger{36})  %n    ligne : %highlight(%L) %highlight(---) %msg %highlight(---) %n%n</pattern>
@@ -12,32 +14,46 @@
   </appender>
 
   <appender name="error" class="ch.qos.logback.core.ConsoleAppender">
-  <filter class="ch.qos.logback.classic.filter.LevelFilter">
-    <level>ERROR</level>
-    <onMatch>ACCEPT</onMatch>
-    <onMismatch>DENY</onMismatch>
-  </filter>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
     <encoder>
       <charset>UTF-8</charset>
       <pattern>%n%d{HH:mm:ss} [%thread] %highlight(%-5level) %boldRed(%logger{36}) %n    ligne : %boldRed(%L) - %boldRed(Erreur \(%msg\) :) %n %ex %n </pattern>
     </encoder>
   </appender>
 
+  <!-- L'APPENDER DEFAULT MODIFIÉ : Il filtre et REJETTE INFO et ERROR -->
   <appender name="DEFAULT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- Filtre 1 : On rejette INFO pour éviter les doublons -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>INFO</level>
+      <onMatch>DENY</onMatch>
+      <onMismatch>NEUTRAL</onMismatch>
+    </filter>
+    <!-- Filtre 2 : On rejette ERROR pour éviter les doublons -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>DENY</onMatch>
+      <onMismatch>NEUTRAL</onMismatch>
+    </filter>
+    
     <encoder>
       <charset>UTF-8</charset>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{36} ligne : %highlight(%L) %highlight(---) %msg %highlight(---) %n</pattern>
     </encoder>
   </appender>
 
-    <logger name="snake.pattern" level="info" additivity="false">
-      <appender-ref ref="info" />
-      <appender-ref ref="error" />
-    </logger>
-
+  <!-- Le logger devient additif (additivity="true" par défaut) -->
+  <logger name="snake.pattern" level="debug">
+    <appender-ref ref="info" />
+    <appender-ref ref="error" />
+  </logger>
 
   <root level="INFO">
     <appender-ref ref="DEFAULT" />
   </root>
-  
+
 </configuration>

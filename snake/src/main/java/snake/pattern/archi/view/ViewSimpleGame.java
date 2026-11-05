@@ -1,4 +1,4 @@
-package snake.pattern.view;
+package snake.pattern.archi.view;
 
 import javax.swing.*;
 

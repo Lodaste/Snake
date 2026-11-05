@@ -1,4 +1,4 @@
-package snake.pattern.utils;
+package snake.pattern.archi.controller;
 
 import snake.pattern.archi.Game;
 
@@ -29,4 +29,10 @@ public abstract class AbstractController
      * réglage de la vitesse du jeu
      */
     public abstract void setSpeed(double speed);
+
+    public Game getGame() {
+        return game;
+    }
+
+    
 }

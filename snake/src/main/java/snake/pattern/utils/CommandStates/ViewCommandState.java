@@ -1,4 +1,4 @@
-package snake.pattern.utils;
+package snake.pattern.utils.CommandStates;
 
 public interface ViewCommandState 
 {

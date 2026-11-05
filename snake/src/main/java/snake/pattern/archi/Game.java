@@ -64,7 +64,7 @@ public abstract class Game implements Runnable, Observable
     public void init()
     {
         curentTurn = 0;
-        isRunning = true;
+        //isRunning = true;
         
         initializeGame();
     }
@@ -90,7 +90,7 @@ public abstract class Game implements Runnable, Observable
     public void step()
     {
         curentTurn ++;
-        if (isGameOver() || curentTurn == maxTurn)
+        if (isGameOver() || curentTurn > maxTurn)
         {
             isRunning = false;
             gameOver();
@@ -109,7 +109,7 @@ public abstract class Game implements Runnable, Observable
     /**
      * Méthode pour terminer une partie
      */
-    protected abstract void gameOver();
+    public abstract void gameOver();
 
     /**
      * Méthode indiquant si la partie est finie
@@ -120,7 +120,7 @@ public abstract class Game implements Runnable, Observable
     /**
      * Met en pause le jeu
      */
-    void pause()
+    public void pause()
     {
         isRunning = false;
     }
@@ -164,4 +164,14 @@ public abstract class Game implements Runnable, Observable
             view.actualiser(curentTurn);
         }
     }
+
+    public int getCurentTurn() {
+        return curentTurn;
+    }
+
+    public int getMaxTurn() {
+        return maxTurn;
+    }
+
+    
 }
