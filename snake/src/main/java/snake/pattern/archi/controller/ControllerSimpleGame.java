@@ -1,11 +1,18 @@
-package snake.pattern.archi;
+package snake.pattern.archi.controller;
 
-import snake.pattern.utils.AbstractController;
-import snake.pattern.view.ViewCommand;
-import snake.pattern.view.ViewSimpleGame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import snake.pattern.archi.SimpleGame;
+import snake.pattern.archi.view.ViewCommand;
+import snake.pattern.archi.view.ViewSimpleGame;
 
 public class ControllerSimpleGame extends AbstractController 
 {
+    /**
+     * Controlleur de la classe
+     */
+    private static final Logger logger = LoggerFactory.getLogger(ViewCommand.class);
 
     public ControllerSimpleGame(int maxTurn, Long time)
     {
@@ -22,34 +29,37 @@ public class ControllerSimpleGame extends AbstractController
         
     }
 
-    @Override 
-    protected void restart()
+    @Override
+    public void restart()
     {
         game.gameOver();
         game.init();
+        logger.debug("Restart");
     }
 
     @Override 
-    protected void step()
+    public void step()
     {
         game.step();
+        logger.debug("Step");
     }
 
     @Override 
-    protected void play()
+    public void play()
     {
-        //game.setRunning(true);
-        game.run();
+        game.launch();
+        logger.debug("Play");
     }
 
     @Override 
-    protected void pause()
+    public void pause()
     {
         game.pause();
+        logger.debug("Pause");
     }
 
     @Override 
-    protected void setSpeed(double speed)
+    public void setSpeed(double speed)
     {
         game.setTime((long) speed * 1000);
     }

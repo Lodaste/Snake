@@ -1,11 +1,16 @@
-package snake.pattern.view;
+package snake.pattern.archi.view;
 
 import javax.swing.*;
 
-import snake.pattern.archi.ControllerSimpleGame;
-import snake.pattern.utils.AbstractController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import snake.pattern.Test;
+import snake.pattern.archi.controller.AbstractController;
+import snake.pattern.archi.controller.ControllerSimpleGame;
 import snake.pattern.utils.Observateur;
-import snake.pattern.utils.ViewCommandState;
+import snake.pattern.utils.CommandStates.StartingState;
+import snake.pattern.utils.CommandStates.ViewCommandState;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +21,7 @@ import java.awt.event.ActionListener;
  */
 public class ViewCommand implements Observateur
 {
+    private static final Logger logger = LoggerFactory.getLogger(ViewCommand.class);
     /**
      * La fenêtre de cette interface
      */
@@ -40,8 +46,6 @@ public class ViewCommand implements Observateur
 
     public ViewCommand(AbstractController controller) 
     {
-        this.controller = controller;
-
         //Créer des propriétés pour la fenêtre
         frame.setSize(new Dimension(700, 250));
         frame.setResizable(false); 
@@ -71,12 +75,14 @@ public class ViewCommand implements Observateur
         //Créer des boutons et y mettre des icônes
         Icon restartIcon = new ImageIcon("snake/src/main/resources/icons/icon_restart.png");
         restartButton = new JButton(restartIcon);
+        restartButton.setEnabled(false);
 
         Icon playIcon = new ImageIcon("snake/src/main/resources/icons/icon_play.png");
         playButton = new JButton(playIcon);
 
         Icon pauseIcon = new ImageIcon("snake/src/main/resources/icons/icon_pause.png"); 
         pauseButton = new JButton(pauseIcon);
+        pauseButton.setEnabled(false);
 
         Icon stepIcon = new ImageIcon("snake/src/main/resources/icons/icon_step.png");
         stepButton = new JButton(stepIcon);
@@ -89,6 +95,7 @@ public class ViewCommand implements Observateur
             public void actionPerformed(ActionEvent evenement) {
                 controller.restart();
                 viewCommandState.restart();
+                logger.debug("Bouton restart utilisé");
             }
         });
 
@@ -96,6 +103,7 @@ public class ViewCommand implements Observateur
             public void actionPerformed(ActionEvent evenement) {
                 controller.play();
                 viewCommandState.play();
+                logger.debug("Bouton play utilisé");
             }
         });
 
@@ -103,6 +111,7 @@ public class ViewCommand implements Observateur
             public void actionPerformed(ActionEvent evenement) {
                 controller.step();
                 viewCommandState.step();
+                logger.debug("Bouton step utilisé");
             }
         });
 
@@ -110,6 +119,7 @@ public class ViewCommand implements Observateur
             public void actionPerformed(ActionEvent evenement) {
                 controller.pause();
                 viewCommandState.pause();
+                logger.debug("Bouton pause utilisé");
             }
         });
 
@@ -137,7 +147,7 @@ public class ViewCommand implements Observateur
         subTurnsPanel.add(turnsSlider);
 
         //Créer un label pour le tour courant
-        turns = new JLabel("Tour actuel : 5", JLabel.CENTER);
+        turns = new JLabel("Tour actuel : 0", JLabel.CENTER);
 
         //Ajouter les éléments au second conteneur
         turnsPanel.add(subTurnsPanel);
@@ -147,6 +157,9 @@ public class ViewCommand implements Observateur
         frame.add(mainPanel);
         //Rendre la fenêtre visible
         frame.setVisible(true); 
+
+        this.controller = controller;
+        viewCommandState = new StartingState(this);
     }
     
 
@@ -159,7 +172,6 @@ public class ViewCommand implements Observateur
     @Override
     public void actualiser(int curentTurn)
     {
-        System.out.println(curentTurn);
         turns.setText("Tour actuel : " + curentTurn);
     }
 
@@ -183,6 +195,14 @@ public class ViewCommand implements Observateur
 
     public JButton getStepButton() {
         return stepButton;
+    }
+
+    
+
+
+
+    public AbstractController getController() {
+        return controller;
     }
 
 
