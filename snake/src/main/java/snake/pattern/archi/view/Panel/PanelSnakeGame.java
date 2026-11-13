@@ -1,4 +1,4 @@
-package snake.pattern.archi.view;
+package snake.pattern.archi.view.Panel;
 
 
 import java.awt.Color;
@@ -85,7 +85,7 @@ public class PanelSnakeGame extends JPanel{
 				if (walls[x][y]){
 
 					try {
-						Image img = ImageIO.read(new File("./images/wall.png"));
+						Image img = ImageIO.read(new File("snake/src/main/resources/images/wall.png"));
 						g.drawImage(img, (int)position_x, (int)position_y, (int)stepx, (int)stepy, this);
 						
 					} catch (IOException e) {
@@ -161,9 +161,9 @@ public class PanelSnakeGame extends JPanel{
 			
 			try {
 				if(featuresSnake.getColorSnake() == ColorSnake.Green) {
-					img = ImageIO.read(new File("./images/snake_green_" + cpt_img + ".png"));
+					img = ImageIO.read(new File("snake/src/main/resources/images/snake_green_" + cpt_img + ".png"));
 				} else if(featuresSnake.getColorSnake() == ColorSnake.Red ) {
-					img = ImageIO.read(new File("./images/snake_red_" + cpt_img + ".png"));	
+					img = ImageIO.read(new File("snake/src/main/resources/images/snake_red_" + cpt_img + ".png"));	
 				}
 		
 			} catch (IOException e) {
@@ -211,7 +211,7 @@ public class PanelSnakeGame extends JPanel{
 
 		if (featuresItem.getItemType() == ItemType.APPLE) {
 			try {
-				Image img = ImageIO.read(new File("./images/apple.png"));
+				Image img = ImageIO.read(new File("snake/src/main/resources/images/apple.png"));
 				g.drawImage(img, (int)pos_x, (int)pos_y, (int)stepx, (int)stepy, this);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -220,7 +220,7 @@ public class PanelSnakeGame extends JPanel{
 
 		if (featuresItem.getItemType() == ItemType.BOX) {
 			try {
-				Image img = ImageIO.read(new File("./images/mysteryBox.png"));
+				Image img = ImageIO.read(new File("snake/src/main/resources/images/mysteryBox.png"));
 				g.drawImage(img, (int)pos_x, (int)pos_y, (int)stepx, (int)stepy, this);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -230,16 +230,17 @@ public class PanelSnakeGame extends JPanel{
 		
 		if (featuresItem.getItemType() == ItemType.SICK_BALL) {
 			try {
-				Image img = ImageIO.read(new File("./images/sickBall.png"));
+				Image img = ImageIO.read(new File("snake/src/main/resources/images/sickBall.png"));
 				g.drawImage(img, (int)pos_x, (int)pos_y, (int)stepx, (int)stepy, this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+
 		
 		if (featuresItem.getItemType() == ItemType.INVINCIBILITY_BALL) {
 			try {
-				Image img = ImageIO.read(new File("./images/invicibleBall.png"));
+				Image img = ImageIO.read(new File("snake/src/main/resources/images/invicibleBall.png"));
 				g.drawImage(img, (int)pos_x, (int)pos_y, (int)stepx, (int)stepy, this);
 			} catch (IOException e) {
 				e.printStackTrace();

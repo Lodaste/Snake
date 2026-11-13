@@ -2,6 +2,7 @@ package snake.pattern;
 
 import snake.pattern.archi.SimpleGame;
 import snake.pattern.archi.controller.ControllerSimpleGame;
+import snake.pattern.archi.controller.ControllerSnakeGame;
 import snake.pattern.archi.view.ViewCommand;
 import snake.pattern.archi.view.ViewSimpleGame;
 
@@ -24,8 +25,9 @@ public class Test
         logger.info("test");
         logger.warn("test");
         logger.error("test");
-        ControllerSimpleGame controllerSimpleGame = new ControllerSimpleGame(10, (long) 1000);
+        //ControllerSimpleGame controllerSimpleGame = new ControllerSimpleGame(10, (long) 1000);
 
+        ControllerSnakeGame controllerSnakeGame = new ControllerSnakeGame(10, (long) 1000, "snake/src/main/resources/layouts/alone.lay");
 
 
 

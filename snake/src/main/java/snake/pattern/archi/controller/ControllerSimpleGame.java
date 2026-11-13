@@ -12,7 +12,7 @@ public class ControllerSimpleGame extends AbstractController
     /**
      * Controlleur de la classe
      */
-    private static final Logger logger = LoggerFactory.getLogger(ViewCommand.class);
+    private static final Logger logger = LoggerFactory.getLogger(ControllerSimpleGame.class);
 
     public ControllerSimpleGame(int maxTurn, Long time)
     {
