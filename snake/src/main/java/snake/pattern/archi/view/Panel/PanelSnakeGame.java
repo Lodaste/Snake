@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import snake.pattern.utils.features.*;
-import snake.pattern.utils.enumTypes.*;;
+import snake.pattern.utils.enumTypes.*;
 
 
 /** 

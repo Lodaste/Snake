@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import snake.pattern.Test;
+import snake.pattern.archi.SimpleGame;
 import snake.pattern.archi.controller.AbstractController;
 import snake.pattern.archi.controller.ControllerSimpleGame;
+import snake.pattern.utils.Observable;
 import snake.pattern.utils.Observateur;
 import snake.pattern.utils.CommandStates.StartingState;
 import snake.pattern.utils.CommandStates.ViewCommandState;
@@ -32,8 +34,6 @@ public class ViewCommand implements Observateur
      */
     JLabel turns;
 
-    AbstractController controller;
-
     JButton restartButton;
 
     JButton playButton;
@@ -44,8 +44,16 @@ public class ViewCommand implements Observateur
 
     ViewCommandState viewCommandState;
 
-    public ViewCommand(AbstractController controller) 
+    AbstractController controller;
+
+    Observable game;
+
+    public ViewCommand(AbstractController controller, Observable game) 
     {
+        this.controller = controller;
+        this.game = game;
+        game.enregistrerObservateur(this);
+        
         //Créer des propriétés pour la fenêtre
         frame.setSize(new Dimension(700, 250));
         frame.setResizable(false); 
@@ -158,16 +166,9 @@ public class ViewCommand implements Observateur
         //Rendre la fenêtre visible
         frame.setVisible(true); 
 
-        this.controller = controller;
         viewCommandState = new StartingState(this);
     }
     
-
-
-    public static void main(String[] args) 
-    {
-        ViewCommand viewCommand = new ViewCommand(new ControllerSimpleGame(10, Long.valueOf(2000)));
-    }
 
     @Override
     public void actualiser(int curentTurn)

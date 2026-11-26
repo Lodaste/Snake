@@ -4,7 +4,9 @@ package snake.pattern.archi.view;
 import javax.swing.*;
 
 import snake.pattern.archi.view.Panel.PanelSnakeGame;
+import snake.pattern.utils.Observable;
 import snake.pattern.utils.Observateur;
+import snake.pattern.archi.controller.AbstractController;
 import snake.pattern.archi.model.InputMap;
 
 import java.awt.*;
@@ -19,8 +21,16 @@ public class ViewSnakeGame implements Observateur
     JLabel jeu;
 
     InputMap inputMap;
-    public ViewSnakeGame(InputMap inputMap) 
+
+    AbstractController controller;
+
+    Observable game;
+    
+    public ViewSnakeGame(InputMap inputMap, AbstractController controller, Observable game) 
     {
+        this.controller = controller;
+        this.game = game;
+        game.enregistrerObservateur(this);
         this.inputMap = inputMap;
         frame.setSize(new Dimension(700, 700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +58,8 @@ public class ViewSnakeGame implements Observateur
 
 
     @Override
-    public void actualiser(int curentTurn) {
+    public void actualiser(int curentTurn) 
+    {
         jeu.setText("Tour actuel : " + curentTurn);
     }
 }

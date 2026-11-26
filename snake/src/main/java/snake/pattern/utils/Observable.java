@@ -1,21 +1,31 @@
 package snake.pattern.utils;
 
-public interface Observable 
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Observable 
 {
     /**
      * Ajouter un Observateur
      * @param observateur
      */
-    public void enregistrerObservateur(Observateur observateur);
+    public abstract void enregistrerObservateur(Observateur observateur);
 
     /**
      * Supprimer un observateur
      * @param observateur
      */
-    public void supprimerObservateur(Observateur observateur);
+    public abstract void supprimerObservateur(Observateur observateur);
 
     /**
      *Notifier tous les Observateur d'un changement
      */
-    public void notifierObservateurs();
+    public abstract void notifierObservateurs();
+
+    protected List<Observateur> views;
+
+    protected Observable()
+    {
+        views = new ArrayList<>();
+    }
 }

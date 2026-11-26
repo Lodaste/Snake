@@ -14,7 +14,7 @@ import snake.pattern.utils.Observateur;
  * Classe abstraite représentant une patron de méthode
  * Game
  */
-public abstract class Game implements Runnable, Observable
+public abstract class Game extends Observable implements Runnable
 {
     private static final Logger logger = LoggerFactory.getLogger(Game.class);
     /**
@@ -50,10 +50,11 @@ public abstract class Game implements Runnable, Observable
      */
     Thread thread;
 
-    protected List<Observateur> views = new ArrayList<>();
+    
 
     public Game (int maxTurn, long time)
     {
+        super(); // set la liste de views
         this.maxTurn = maxTurn;
         this.time = time;
     }

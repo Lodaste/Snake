@@ -2,6 +2,9 @@ package snake.pattern.archi.view;
 
 import javax.swing.*;
 
+import snake.pattern.archi.controller.AbstractController;
+import snake.pattern.archi.controller.ControllerSimpleGame;
+import snake.pattern.utils.Observable;
 import snake.pattern.utils.Observateur;
 
 import java.awt.*;
@@ -20,8 +23,16 @@ public class ViewSimpleGame implements Observateur
 
     JLabel jeu;
 
-    public ViewSimpleGame() 
+    AbstractController controller;
+
+    Observable game;
+
+    public ViewSimpleGame(AbstractController controller, Observable game) 
     {
+        this.controller = controller;
+        this.game = game;
+        game.enregistrerObservateur(this);
+
         frame.setSize(new Dimension(700, 700));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension windowSize = frame.getSize();
@@ -36,11 +47,6 @@ public class ViewSimpleGame implements Observateur
         frame.add(jeu);
 
         frame.setVisible(true); 
-    }
-
-    public static void main(String[] args) 
-    {
-        ViewSimpleGame vuViewSimpleGame = new ViewSimpleGame();
     }
 
     @Override
