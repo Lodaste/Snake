@@ -32,8 +32,9 @@ public class Test
         logger.error("test");
         */
 
-        SnakeGame snakeGame = new SnakeGame(10, Long.valueOf(2000), new InputMap("snake/src/main/resources/layouts/alone.lay"));
-
+        SnakeGame snakeGame = new SnakeGame(50, Long.valueOf(500), new InputMap("snake/src/main/resources/layouts/smallArenaNoWall.lay"));
+        //snake/src/main/resources/layouts/smallArenaNoWall.lay
+        //snake/src/main/resources/layouts/aloneNoWall.lay
         ControllerSnakeGame controllerSnakeGame = new ControllerSnakeGame(snakeGame);
 
 

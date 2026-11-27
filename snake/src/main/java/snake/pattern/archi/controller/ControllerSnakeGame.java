@@ -3,12 +3,14 @@ package snake.pattern.archi.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import snake.pattern.archi.Game;
 import snake.pattern.archi.SnakeGame;
 import snake.pattern.archi.view.ViewCommand;
 import snake.pattern.archi.view.ViewSnakeGame;
 
-
+/**
+ * Controlleur concret pour le SnakeGame
+ * ControllerSnakeGame
+ */
 public class ControllerSnakeGame extends AbstractController
 {
     /**
@@ -18,14 +20,9 @@ public class ControllerSnakeGame extends AbstractController
 
     public ControllerSnakeGame(SnakeGame game)
     {
-        
-
-        
-
        this.game = game;    //Hériter de game par Abstract controlleur
 
         ViewSnakeGame viewGame= new ViewSnakeGame(game.getInputMap(), this, game); //une vue de jeu qui est un Observateur
-
         ViewCommand viewCommand = new ViewCommand(this, game); // une vue de commandes 
 
         game.init();

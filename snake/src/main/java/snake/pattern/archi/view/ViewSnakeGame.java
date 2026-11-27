@@ -3,24 +3,23 @@ package snake.pattern.archi.view;
 
 import javax.swing.*;
 
-import org.slf4j.LoggerFactory;
+
 
 import snake.pattern.archi.view.Panel.PanelSnakeGame;
-import snake.pattern.utils.Observable;
 import snake.pattern.utils.Observateur;
-import snake.pattern.utils.features.FeaturesItem;
-import snake.pattern.utils.features.FeaturesSnake;
-import snake.pattern.archi.Game;
 import snake.pattern.archi.SnakeGame;
 import snake.pattern.archi.controller.AbstractController;
 import snake.pattern.archi.model.InputMap;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Classe permettant l'affichage d'une partie de Snake
+ * ViewSnakeGame
+ */
 public class ViewSnakeGame implements Observateur
 {
     /**
@@ -38,6 +37,9 @@ public class ViewSnakeGame implements Observateur
 
     PanelSnakeGame panelSnakeGame;
 
+    /**
+     * Logger de la classe
+     */
     private static final Logger logger = LoggerFactory.getLogger(ViewSnakeGame.class);
     
     public ViewSnakeGame(InputMap inputMap, AbstractController controller, SnakeGame game) 
@@ -69,12 +71,14 @@ public class ViewSnakeGame implements Observateur
         frame.setVisible(true); 
     }
 
-
-
+    /**    (non-Javadoc)
+     * Actualisation de l'interface avec les nouvelles positions des agents puis actualisation de l'interface
+     * @see snake.pattern.utils.Observateur#actualiser(int)
+     */
     @Override
     public void actualiser(int curentTurn) 
     {
-        logger.debug("\t\tactualisation ...");
+        logger.debug("actualisation ...");
         panelSnakeGame.updateInfoGame(game.getSnakes(), game.getItems());
         panelSnakeGame.repaint();
 

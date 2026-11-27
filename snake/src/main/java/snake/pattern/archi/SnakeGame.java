@@ -14,8 +14,13 @@ import snake.pattern.archi.model.InputMap;
 import snake.pattern.utils.enumTypes.ColorSnake;
 import snake.pattern.utils.features.FeaturesItem;
 import snake.pattern.utils.features.FeaturesSnake;
+import snake.pattern.utils.features.Position;
 
-public class SnakeGame extends  Game
+/**
+ * Logique de jeu pour le jeu de Snake
+ * SnakeGame
+ */
+public class SnakeGame extends Game
 {
      /**
      * Logger de classe
@@ -37,6 +42,8 @@ public class SnakeGame extends  Game
         for (FeaturesSnake snake : inputMap.getStart_snakes()) {
             logger.info("{}", snake);
         }
+
+        logger.debug("Limites de la map : x = {}, y = {}", inputMap.getSizeX(), inputMap.getSizeY());
     }
 
     @Override
@@ -63,6 +70,7 @@ public class SnakeGame extends  Game
         }
 
         logger.debug("agent snake : {} ", agents.toArray());
+        notifierObservateurs();
     }
 
 
@@ -79,6 +87,7 @@ public class SnakeGame extends  Game
         {
             agent.getStrategie().moveAgent(agent); // retourne une AgentAction (à utiliser dans )
         }
+        inBound();
         notifierObservateurs();
     }
 
@@ -94,7 +103,10 @@ public class SnakeGame extends  Game
         return inputMap;
     }
 
-
+    /**
+     * Transforme les caractéristiques des snakes vers des FeaturesSnake
+     * @return FeaturesSnake utilisable par la vue
+     */
     public ArrayList<FeaturesSnake> getSnakes() 
     {
 
@@ -115,9 +127,30 @@ public class SnakeGame extends  Game
         return snakes;
     }
 
-public ArrayList<FeaturesItem> getItems() 
-{
-    return new ArrayList<>(items);
-}
+    public ArrayList<FeaturesItem> getItems() 
+    {
+        return new ArrayList<>(items);
+    }
     
+    /**
+     * Vérifie et ré-arrange la position des agents s'ils sont hors des limites de la carte
+     */
+    public void inBound()
+    {
+        int x = inputMap.getSizeX();
+        int y = inputMap.getSizeY();
+        Position head ;
+        for (Agent agent : agents) 
+        {
+            head = agent.getPosition().getFirst();
+            if(head.getX() >= x)
+                head.setX(0);
+            else if (head.getX() < 0)
+                head.setX(x -1);
+            else if (head.getY() >= y)
+                head.setY(0);
+            else if (head.getY() < 0)
+                head.setY(y - 1);
+        }
+    }
 }

@@ -169,7 +169,6 @@ public class ViewCommand implements Observateur
         viewCommandState = new StartingState(this);
     }
     
-
     @Override
     public void actualiser(int curentTurn)
     {
@@ -180,37 +179,24 @@ public class ViewCommand implements Observateur
         return restartButton;
     }
 
-
-
     public JButton getPlayButton() {
         return playButton;
     }
-
-
 
     public JButton getPauseButton() {
         return pauseButton;
     }
 
-
-
     public JButton getStepButton() {
         return stepButton;
     }
-
-    
-
 
 
     public AbstractController getController() {
         return controller;
     }
 
-
-
     public void setViewCommandState(ViewCommandState viewCommandState) {
         this.viewCommandState = viewCommandState;
     }
-
-    
 }

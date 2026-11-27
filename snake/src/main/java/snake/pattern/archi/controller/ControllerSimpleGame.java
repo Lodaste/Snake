@@ -8,6 +8,10 @@ import snake.pattern.archi.SimpleGame;
 import snake.pattern.archi.view.ViewCommand;
 import snake.pattern.archi.view.ViewSimpleGame;
 
+/**
+ * Classe concrète de controlleur pour les tests initiaux
+ * ControllerSimpleGame
+ */
 public class ControllerSimpleGame extends AbstractController 
 {
     /**
@@ -21,7 +25,6 @@ public class ControllerSimpleGame extends AbstractController
 
        ViewCommand viewCommand = new ViewCommand(this, game);
        ViewSimpleGame viewSimpleGame = new ViewSimpleGame(this, game);
- 
     }
 
     @Override

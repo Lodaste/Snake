@@ -2,6 +2,10 @@ package snake.pattern.archi.controller;
 
 import snake.pattern.archi.Game;
 
+/**
+ * Controlleur abstrait du modèle MVC
+ * AbstractController
+ */
 public abstract class AbstractController 
 {
     protected Game game;

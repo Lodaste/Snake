@@ -6,6 +6,10 @@ import snake.pattern.agent.strategie.SnakeStrategie;
 import snake.pattern.utils.enumTypes.AgentAction;
 import snake.pattern.utils.features.Position;
 
+/**
+ * Classe représetant des agents du jeu (pour le moment des Snake)
+ * Agent
+ */
 public abstract class Agent
 {
     SnakeStrategie strategie;

@@ -14,8 +14,12 @@ import snake.pattern.utils.enumTypes.*;
 import snake.pattern.utils.features.*;
 
 
-
-public class InputMap implements Serializable {
+/**
+ * Classe qui lit et transmet les information des fichier text de layout
+ * InputMap
+ */
+public class InputMap implements Serializable 
+{
 
 	private static final long serialVersionUID = 1L;
 	

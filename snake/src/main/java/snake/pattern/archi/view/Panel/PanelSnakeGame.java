@@ -18,18 +18,14 @@ import snake.pattern.utils.enumTypes.*;
 
 
 /** 
- * Classe qui permet de charger d'afficher le panneau du jeu à partir d'une carte et de listes d'agents avec leurs positions.
+ * Classe qui permet d'afficher le panneau du jeu à partir d'une carte et de listes d'agents avec leurs positions.
  * 
  */
-
-
-public class PanelSnakeGame extends JPanel{
-
+public class PanelSnakeGame extends JPanel
+{
 	private static final long serialVersionUID = 1L;
 
-	
 	protected Color ground_Color= new Color(0,0,0);
-
 
 	private int sizeX;
 	private int sizeY;
