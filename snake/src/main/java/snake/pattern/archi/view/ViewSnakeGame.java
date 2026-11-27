@@ -3,13 +3,23 @@ package snake.pattern.archi.view;
 
 import javax.swing.*;
 
+import org.slf4j.LoggerFactory;
+
 import snake.pattern.archi.view.Panel.PanelSnakeGame;
 import snake.pattern.utils.Observable;
 import snake.pattern.utils.Observateur;
+import snake.pattern.utils.features.FeaturesItem;
+import snake.pattern.utils.features.FeaturesSnake;
+import snake.pattern.archi.Game;
+import snake.pattern.archi.SnakeGame;
 import snake.pattern.archi.controller.AbstractController;
 import snake.pattern.archi.model.InputMap;
 
 import java.awt.*;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ViewSnakeGame implements Observateur
 {
@@ -24,9 +34,13 @@ public class ViewSnakeGame implements Observateur
 
     AbstractController controller;
 
-    Observable game;
+    SnakeGame game;
+
+    PanelSnakeGame panelSnakeGame;
+
+    private static final Logger logger = LoggerFactory.getLogger(ViewSnakeGame.class);
     
-    public ViewSnakeGame(InputMap inputMap, AbstractController controller, Observable game) 
+    public ViewSnakeGame(InputMap inputMap, AbstractController controller, SnakeGame game) 
     {
         this.controller = controller;
         this.game = game;
@@ -49,7 +63,7 @@ public class ViewSnakeGame implements Observateur
 
         
 
-        PanelSnakeGame panelSnakeGame = new PanelSnakeGame(inputMap.getSizeX(), inputMap.getSizeY(), inputMap.get_walls() , inputMap.getStart_snakes(), inputMap.getStart_items());
+        this.panelSnakeGame = new PanelSnakeGame(inputMap.getSizeX(), inputMap.getSizeY(), inputMap.get_walls() , inputMap.getStart_snakes(), inputMap.getStart_items());
 
         frame.add(panelSnakeGame);
         frame.setVisible(true); 
@@ -60,6 +74,9 @@ public class ViewSnakeGame implements Observateur
     @Override
     public void actualiser(int curentTurn) 
     {
-        jeu.setText("Tour actuel : " + curentTurn);
+        logger.debug("\t\tactualisation ...");
+        panelSnakeGame.updateInfoGame(game.getSnakes(), game.getItems());
+        panelSnakeGame.repaint();
+
     }
 }

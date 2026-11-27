@@ -26,10 +26,11 @@ public class Test
 
     public static void main(String[] args) 
     {
-        logger.debug("test");
+       /*  logger.debug("test");
         logger.info("test");
         logger.warn("test");
         logger.error("test");
+        */
 
         SnakeGame snakeGame = new SnakeGame(10, Long.valueOf(2000), new InputMap("snake/src/main/resources/layouts/alone.lay"));
 

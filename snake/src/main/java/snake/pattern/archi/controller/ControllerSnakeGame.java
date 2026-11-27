@@ -27,6 +27,8 @@ public class ControllerSnakeGame extends AbstractController
         ViewSnakeGame viewGame= new ViewSnakeGame(game.getInputMap(), this, game); //une vue de jeu qui est un Observateur
 
         ViewCommand viewCommand = new ViewCommand(this, game); // une vue de commandes 
+
+        game.init();
     }
 
     @Override

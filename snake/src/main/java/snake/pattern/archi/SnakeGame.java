@@ -11,6 +11,7 @@ import snake.pattern.agent.Fabrique;
 import snake.pattern.agent.FabriqueSnake;
 import snake.pattern.agent.strategie.RandomStrategie;
 import snake.pattern.archi.model.InputMap;
+import snake.pattern.utils.enumTypes.ColorSnake;
 import snake.pattern.utils.features.FeaturesItem;
 import snake.pattern.utils.features.FeaturesSnake;
 
@@ -32,6 +33,10 @@ public class SnakeGame extends  Game
         this.inputMap = inputMap;
         agents = new ArrayList<>();
         items = inputMap.getStart_items();
+
+        for (FeaturesSnake snake : inputMap.getStart_snakes()) {
+            logger.info("{}", snake);
+        }
     }
 
     @Override
@@ -49,11 +54,15 @@ public class SnakeGame extends  Game
         /**
          * Création d'agent snake avec les informations présentes dans la liste de featureSnake de inputMap
          */
+        agents.clear();
         Fabrique fabrique = new FabriqueSnake();
         for (FeaturesSnake snakeInfo : inputMap.getStart_snakes()) 
         {
+            logger.debug("creation sanke one");
             agents.add(fabrique.créerAgent(snakeInfo, new RandomStrategie()));
         }
+
+        logger.debug("agent snake : {} ", agents.toArray());
     }
 
 
@@ -64,7 +73,8 @@ public class SnakeGame extends  Game
     @Override
     protected void takeTurn() 
     {
-        logger.debug("Tour {} du jeu en cours", curentTurn);
+        
+        logger.info("Tour {} du jeu en cours", curentTurn);
         for (Agent agent : agents) 
         {
             agent.getStrategie().moveAgent(agent); // retourne une AgentAction (à utiliser dans )
@@ -84,5 +94,30 @@ public class SnakeGame extends  Game
         return inputMap;
     }
 
+
+    public ArrayList<FeaturesSnake> getSnakes() 
+    {
+
+        logger.debug("getting snakes");
+        ArrayList<FeaturesSnake> snakes = new ArrayList<>();
+        for (Agent agent : agents) 
+        {
+            logger.debug("one snake ...");
+            snakes.add(new FeaturesSnake(agent.getPosition(), agent.getLastAction(), ColorSnake.Green, false , false));   // à adapter au nom réel dans ta classe Agent
+        }
+
+        logger.debug("printing snakes");
+        for (FeaturesSnake snake : snakes)
+        {
+            logger.debug("{}", snake);
+        }
+
+        return snakes;
+    }
+
+public ArrayList<FeaturesItem> getItems() 
+{
+    return new ArrayList<>(items);
+}
     
 }

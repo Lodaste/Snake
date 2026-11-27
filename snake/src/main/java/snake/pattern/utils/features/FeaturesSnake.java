@@ -82,4 +82,27 @@ public class FeaturesSnake {
 		this.lastAction = lastAction;
 	}
 
+	@Override
+	public String toString() 
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("Snake ").append(colorSnake).append(" : ");
+
+		for (int i = 0; i < positions.size(); i++) 
+		{
+			Position p = positions.get(i);
+			sb.append("(").append(p.getX()).append(",").append(p.getY()).append(")");
+			if (i < positions.size() - 1) 
+			{
+				sb.append(" -> ");
+			}
+		}
+
+		sb.append(" | action=").append(lastAction)
+		.append(" | invincible=").append(isInvincible)
+		.append(" | malade=").append(isSick);
+
+		return sb.toString();
+	}
+
 }

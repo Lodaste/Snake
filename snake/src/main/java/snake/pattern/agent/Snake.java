@@ -1,24 +1,24 @@
 package snake.pattern.agent;
 
+
+
 import java.util.ArrayList;
 
 import snake.pattern.agent.strategie.SnakeStrategie;
 import snake.pattern.utils.enumTypes.AgentAction;
-import snake.pattern.utils.enumTypes.ColorSnake;
-import snake.pattern.utils.features.FeaturesSnake;
 import snake.pattern.utils.features.Position;
 
 public class Snake extends Agent
 {
-    SnakeStrategie strategie;
+    
+	AgentAction lastAction;
 
-    FeaturesSnake featuresSnake;
 	
-	public Snake(ArrayList<Position> positions, AgentAction lastAction, ColorSnake colorSnake, boolean isInvincible, boolean isSick, SnakeStrategie strategie) {
-		super(strategie);
-		
-        featuresSnake = new FeaturesSnake(positions, lastAction, colorSnake, isInvincible, isSick);
-		
+
+	public Snake(SnakeStrategie strategie,ArrayList<Position> position)
+	{
+		super(strategie, position);
+		lastAction = AgentAction.MOVE_DOWN;
 	}
 
 	public SnakeStrategie getStrategie() {
@@ -29,21 +29,26 @@ public class Snake extends Agent
 		this.strategie = strategie;
 	}
 
-	public FeaturesSnake getFeaturesSnake() {
-		return featuresSnake;
+	public ArrayList<Position> getPosition() {
+		return position;
 	}
 
-	public void setFeaturesSnake(FeaturesSnake featuresSnake) {
-		this.featuresSnake = featuresSnake;
+	public void setPosition(ArrayList<Position> position) {
+		this.position = position;
+	}
+
+	public AgentAction getLastAction() {
+		return lastAction;
+	}
+
+	public void setLastAction(AgentAction lasAction) {
+		this.lastAction = lasAction;
 	}
 
 	@Override
-	public AgentAction getLastAction() 
-	{
-		return featuresSnake.getLastAction();
+	public void updatePosition(AgentAction lastAction) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'updatePosition'");
 	}
-		
-    
-	
 	
 }

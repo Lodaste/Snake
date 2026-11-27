@@ -160,8 +160,10 @@ public abstract class Game extends Observable implements Runnable
     @Override
     public void notifierObservateurs() 
     {
+        logger.debug("notification du tour {}", curentTurn);
         for (Observateur view : views) 
         {
+            logger.debug("\tactu...");
             view.actualiser(curentTurn);
         }
     }

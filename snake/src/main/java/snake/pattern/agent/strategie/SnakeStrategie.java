@@ -7,5 +7,5 @@ import snake.pattern.utils.enumTypes.AgentAction;
 public interface SnakeStrategie 
 {
     boolean isLegalMove(Agent agent, AgentAction action); 
-    AgentAction moveAgent(Agent agent);
+    void moveAgent(Agent agent);
 }
