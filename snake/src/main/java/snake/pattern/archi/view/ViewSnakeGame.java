@@ -37,8 +37,8 @@ public class ViewSnakeGame implements Observateur
         Dimension windowSize = frame.getSize();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPoint = ge.getCenterPoint();
-        int dx = centerPoint.x - windowSize.width / 2 ;
-        int dy = centerPoint.y - windowSize.height / 2 - 350;
+        int dx = centerPoint.x - windowSize.width / 50 ;
+        int dy = centerPoint.y - windowSize.height / 50 - 350;
         frame.setLocation(dx, dy);
         
 

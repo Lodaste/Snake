@@ -3,8 +3,11 @@ package snake.pattern.archi.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import snake.pattern.archi.Game;
 import snake.pattern.archi.SnakeGame;
-import snake.pattern.archi.model.InputMap;
+import snake.pattern.archi.view.ViewCommand;
+import snake.pattern.archi.view.ViewSnakeGame;
+
 
 public class ControllerSnakeGame extends AbstractController
 {
@@ -13,18 +16,17 @@ public class ControllerSnakeGame extends AbstractController
      */
     private static final Logger logger = LoggerFactory.getLogger(ControllerSnakeGame.class);
 
-    public ControllerSnakeGame(int maxTurn, Long time, String map)
+    public ControllerSnakeGame(SnakeGame game)
     {
         
 
-        InputMap inputMap = new InputMap(map);
-        //snake/src/main/resources/layouts/alone.lay
+        
 
-        game = new SnakeGame(maxTurn, time, inputMap);     //Hériter de game par Abstract controlleur
+       this.game = game;    //Hériter de game par Abstract controlleur
 
-        //ViewSnakeGame viewGame= new ViewSnakeGame(inputMap); //une vue de jeu qui est un Observateur
+        ViewSnakeGame viewGame= new ViewSnakeGame(game.getInputMap(), this, game); //une vue de jeu qui est un Observateur
 
-        //ViewCommand viewCommand = new ViewCommand(this); // une vue de commandes 
+        ViewCommand viewCommand = new ViewCommand(this, game); // une vue de commandes 
     }
 
     @Override

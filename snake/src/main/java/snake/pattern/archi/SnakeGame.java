@@ -79,4 +79,10 @@ public class SnakeGame extends  Game
         isRunning = false;
         logger.info("Fin de la partie");
     }
+
+    public InputMap getInputMap() {
+        return inputMap;
+    }
+
+    
 }
